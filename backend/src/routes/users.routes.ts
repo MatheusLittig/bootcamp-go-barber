@@ -1,17 +1,19 @@
 import { Router } from 'express'
-import CreateUserService from '../services/CreateUserService'
+import multer from 'multer'
 
+import uploadConfig from '../config/upload'
+
+import CreateUserService from '../services/CreateUserService'
 import ensureAuthenticate from '../middlewares/ensureAuthenticate'
 
 const usersRouter = Router()
+const upload = multer(uploadConfig)
 
 usersRouter.post('/', async (request, response) => {
   try {
     const { name, email, password } = request.body
 
     const createUser = new CreateUserService()
-
-    console.log(request.body)
 
     const user = await createUser.execute({
       name,
@@ -27,8 +29,13 @@ usersRouter.post('/', async (request, response) => {
   }
 })
 
-usersRouter.patch('/avatar', ensureAuthenticate, async (request, response) => {
-  return response.json({ ok: true })
-})
+usersRouter.patch(
+  '/avatar',
+  ensureAuthenticate,
+  upload.single('avatar'),
+  async (request, response) => {
+    return response.json({ ok: true })
+  }
+)
 
 export default usersRouter
