@@ -29,6 +29,9 @@
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
     "class-methods-use-this": "off",
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "_"
+    }],
     "camelcase": "off"
   },
   "settings": {
