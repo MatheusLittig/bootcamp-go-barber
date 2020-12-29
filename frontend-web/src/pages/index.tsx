@@ -1,6 +1,7 @@
 import React from 'react'
+import ToastContainer from '../components/ToastContainer'
 
-import { AuthProvider } from '../context/AuthContext'
+import { AuthProvider } from '../hooks/AuthContext'
 import SignIn from './signIn'
 
 const Home: React.FC = () => {
@@ -8,6 +9,7 @@ const Home: React.FC = () => {
     <>
       <AuthProvider>
         <SignIn />
+        <ToastContainer />
       </AuthProvider>
     </>
   )

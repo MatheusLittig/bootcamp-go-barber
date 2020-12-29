@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 import Tooltip from '../../components/Tooltip'
 
+import { theme } from '../global'
+
 interface ContainerProps {
   isFocused: boolean
   isFilled: boolean
@@ -15,11 +17,11 @@ export const Container = styled.div<ContainerProps>`
   justify-content: space-between;
   align-items: center;
 
-  background: ${props => props.theme.colors.secondary};
+  background: ${theme.colors.secondary};
   border-radius: 4px;
-  border: 2px solid ${props => props.theme.colors.secondary};
+  border: 2px solid ${theme.colors.secondary};
 
-  color: ${props => props.theme.colors.placeholder};
+  color: ${theme.colors.placeholder};
 
   & + div {
     margin-top: 8px;
@@ -28,20 +30,20 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isErrored &&
     css`
-      border-color: ${props => props.theme.colors.error};
+      border-color: ${theme.colors.error};
     `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: ${props => props.theme.colors.primary};
-      border-color: ${props => props.theme.colors.primary};
+      color: ${theme.colors.primary};
+      border-color: ${theme.colors.primary};
     `}
 
   ${props =>
     props.isFilled &&
     css`
-      color: ${props => props.theme.colors.primary};
+      color: ${theme.colors.primary};
     `}
 
 
@@ -51,10 +53,10 @@ export const Container = styled.div<ContainerProps>`
     background: transparent;
     border: 0;
 
-    color: ${props => props.theme.colors.text};
+    color: ${theme.colors.text};
 
     &::placeholder {
-      color: ${props => props.theme.colors.placeholder};
+      color: ${theme.colors.placeholder};
     }
 
     &:focus {
@@ -71,16 +73,16 @@ export const Error = styled(Tooltip)`
   margin-left: 16px;
 
   svg {
-    color: ${props => props.theme.colors.error};
+    color: ${theme.colors.error};
     margin: 0;
   }
 
   span {
-    background: ${props => props.theme.colors.error};
-    color: ${props => props.theme.colors.text};
+    background: ${theme.colors.error};
+    color: ${theme.colors.text};
 
     &::before {
-      border-color: ${props => props.theme.colors.error} transparent;
+      border-color: ${theme.colors.error} transparent;
     }
   }
 `

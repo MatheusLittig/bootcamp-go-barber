@@ -12,13 +12,13 @@ import Button from '../components/Button'
 
 import { Container, Content, Background } from '../styles/pages/signIn'
 
-import { AuthContext } from '../context/AuthContext'
+import { useAuth } from '../hooks/AuthContext'
 import getValidationErrors from '../utils/getValidationErrors'
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
 
-  const { signIn } = useContext(AuthContext)
+  const { signIn } = useAuth()
 
   interface SignInFormData {
     email: string
@@ -46,9 +46,11 @@ const SignIn: React.FC = () => {
           password: data.password
         })
       } catch (err) {
-        const errors = getValidationErrors(err)
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err)
 
-        formRef.current?.setErrors(errors)
+          formRef.current?.setErrors(errors)
+        }
       }
     },
     [signIn]

@@ -1,4 +1,15 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, DefaultTheme } from 'styled-components'
+
+export const theme: DefaultTheme = {
+  colors: {
+    background: '#121214',
+    text: '#ffffff',
+    placeholder: '#666360',
+    primary: '#25D366',
+    secondary: '#35353b',
+    error: '#ea5455'
+  }
+}
 
 export default createGlobalStyle`
   * {
@@ -8,8 +19,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.text};
+    background: ${theme.colors.background};
+    color: ${theme.colors.text};
     -webkit-font-smoothing: antialiased;
   }
 

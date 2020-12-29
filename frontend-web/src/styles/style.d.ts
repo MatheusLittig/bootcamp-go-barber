@@ -1,7 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import 'styled-components'
 
-import theme from './theme'
+const theme = {
+  colors: {
+    background: '',
+    text: '',
+    placeholder: '',
+    primary: '',
+    secondary: '',
+    error: ''
+  }
+}
 
 export type Theme = typeof theme
 

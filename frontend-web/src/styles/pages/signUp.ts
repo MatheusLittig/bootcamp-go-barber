@@ -3,6 +3,8 @@ import { shade } from 'polished'
 
 import signUpBackgroudImg from '../../assets/sign-up-background.png'
 
+import { theme } from '../global'
+
 export const Container = styled.div`
   height: 100vh;
 
@@ -33,37 +35,37 @@ export const Content = styled.div`
       width: 100%;
       padding: 0 16px;
 
-      background: ${props => props.theme.colors.primary};
+      background: ${theme.colors.primary};
       border-radius: 4px;
       border: 0;
 
-      color: ${props => props.theme.colors.text};
+      color: ${theme.colors.text};
       font-weight: 700;
 
       margin-top: 16px;
       transition: background-color 0.2s;
 
       &:hover {
-        background: ${shade(0.2, '#25D366')};
+        background: ${shade(0.2, `${theme.colors.primary}`)};
       }
     }
 
     a {
-      color: ${props => props.theme.colors.text};
+      color: ${theme.colors.text};
       display: block;
       margin-top: 24px;
       text-decoration: none;
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#FFFFFF')};
+        color: ${shade(0.2, `${theme.colors.text}`)};
       }
     }
   }
   > a {
     margin-top: 24px;
 
-    color: ${props => props.theme.colors.text};
+    color: ${theme.colors.text};
     text-decoration: none;
     transition: color 0.2s;
 
@@ -75,7 +77,7 @@ export const Content = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#FFFFFF')};
+      color: ${shade(0.2, `${theme.colors.text}`)};
     }
   }
 `

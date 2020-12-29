@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { theme } from '../global'
+
 export const Container = styled.div`
   position: relative;
 
@@ -13,12 +15,12 @@ export const Container = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    background: ${props => props.theme.colors.primary};
+    background: ${theme.colors.primary};
     border-radius: 4px;
 
     font-size: 14px;
     font-weight: 500;
-    color: ${props => props.theme.colors.text};
+    color: ${theme.colors.text};
 
     bottom: calc(100% + 12px);
 
@@ -33,7 +35,7 @@ export const Container = styled.div`
       transform: translateX(-50%);
 
       border: solid;
-      border-color: ${props => props.theme.colors.primary} transparent;
+      border-color: ${theme.colors.primary} transparent;
       border-width: 6px 6px 0 6px;
       top: 100%;
     }
