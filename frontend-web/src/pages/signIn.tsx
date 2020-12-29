@@ -1,6 +1,9 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
+import { Form } from '@unform/web'
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi'
+import { FormHandles } from '@unform/core'
+import * as Yup from 'yup'
 
 import logoImg from '../assets/logo_gobarber.svg'
 
@@ -9,7 +12,48 @@ import Button from '../components/Button'
 
 import { Container, Content, Background } from '../styles/pages/signIn'
 
+import { AuthContext } from '../context/AuthContext'
+import getValidationErrors from '../utils/getValidationErrors'
+
 const SignIn: React.FC = () => {
+  const formRef = useRef<FormHandles>(null)
+
+  const { signIn } = useContext(AuthContext)
+
+  interface SignInFormData {
+    email: string
+    password: string
+  }
+
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({})
+
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Email ou senha inválidos'),
+          password: Yup.string().required('Senha obrigatória')
+        })
+
+        await schema.validate(data, {
+          abortEarly: false
+        })
+
+        signIn({
+          email: data.email,
+          password: data.password
+        })
+      } catch (err) {
+        const errors = getValidationErrors(err)
+
+        formRef.current?.setErrors(errors)
+      }
+    },
+    [signIn]
+  )
+
   return (
     <>
       <Head>
@@ -21,7 +65,7 @@ const SignIn: React.FC = () => {
           <Content>
             <img src={logoImg} alt="GoBarber" width="275px" />
 
-            <form>
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu logon</h1>
 
               <Input
@@ -40,7 +84,7 @@ const SignIn: React.FC = () => {
               <Button type="submit">Entrar</Button>
 
               <a href="forgot">Esqueci minha senha</a>
-            </form>
+            </Form>
 
             <a href="signUp">
               <FiLogIn />

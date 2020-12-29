@@ -4,7 +4,8 @@ const theme = {
     text: '#ffffff',
     placeholder: '#666360',
     primary: '#25D366',
-    secondary: '#35353b'
+    secondary: '#35353b',
+    error: '#ea5455'
   }
 }
 
