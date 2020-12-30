@@ -5,6 +5,7 @@ import { theme } from '../global'
 
 interface ToastProps {
   type?: 'info' | 'success' | 'error'
+  hasDescription: boolean
 }
 
 export const Container = styled.div`
@@ -65,11 +66,14 @@ export const Toast = styled.div<ToastProps>`
     }
   }
 
+  & + div {
+    margin-top: 16px;
+  }
+
   button {
     position: absolute;
 
     right: 12px;
-    top: 12px;
 
     opacity: 0.6;
     color: inherit;
@@ -87,4 +91,12 @@ export const Toast = styled.div<ToastProps>`
       color: ${shade(0.2, `${theme.colors.text}`)};
     }
   }
+
+  ${props =>
+    props.hasDescription === true &&
+    css`
+      button {
+        top: 12px;
+      }
+    `}
 `
