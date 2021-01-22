@@ -35,8 +35,6 @@ class CreateAppointmentService {
     })
 
     return appointment
-
-    return appointment
   }
 }
 
